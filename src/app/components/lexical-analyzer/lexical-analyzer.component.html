@@ -1,0 +1,167 @@
+<!-- Esta es la pantalla principal del analizador léxico -->
+<div class="pagina-principal">
+
+  <!-- Encabezado de la aplicación -->
+  <header class="encabezado">
+    <div class="encabezado-contenido">
+      <span class="icono-titulo">⚙️</span>
+      <div>
+        <h1>Analizador Léxico</h1>
+        <p class="subtitulo">Materia: Compiladores — Ingresa tu código fuente y analízalo</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenido-principal">
+
+    <!-- Sección donde el usuario escribe o carga el código -->
+    <section class="card entrada-codigo">
+      <div class="card-titulo">
+        <span>📄</span>
+        <h2>Código Fuente</h2>
+      </div>
+
+      <!-- Textarea donde se escribe el código -->
+      <textarea
+        id="textarea-codigo"
+        class="textarea-codigo"
+        [(ngModel)]="codigoFuente"
+        placeholder="Escribe aquí tu código fuente...
+Ejemplo:
+int x = 10;
+float pi = 3.14;
+if (x > 5) {
+    return true;
+}"
+        rows="12"
+        spellcheck="false">
+      </textarea>
+
+      <!-- Botones de acción -->
+      <div class="acciones">
+        <!-- Botón para cargar un archivo de texto -->
+        <label for="input-archivo" class="btn btn-secundario">
+          📂 Cargar Archivo
+        </label>
+        <input
+          id="input-archivo"
+          type="file"
+          accept=".txt,.c,.java,.js,.ts"
+          class="input-archivo-oculto"
+          (change)="cargarArchivo($event)">
+
+        <div class="acciones-derecha">
+          <!-- Botón para limpiar todo -->
+          <button class="btn btn-limpiar" (click)="limpiar()">
+            🗑️ Limpiar
+          </button>
+
+          <!-- Botón principal para analizar el código -->
+          <button
+            class="btn btn-analizar"
+            (click)="analizar()"
+            [disabled]="!codigoFuente.trim() || analizando">
+            <span *ngIf="!analizando">🔍 Analizar</span>
+            <span *ngIf="analizando">⏳ Analizando...</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Esta parte solo se muestra después de analizar -->
+    <div *ngIf="analisisRealizado" class="resultados">
+
+      <!-- Resumen del análisis -->
+      <section class="card resumen">
+        <div class="card-titulo">
+          <span>📊</span>
+          <h2>Resumen del Análisis</h2>
+        </div>
+        <div class="resumen-grid">
+          <div class="resumen-item resumen-tokens">
+            <span class="resumen-numero">{{ tokens.length }}</span>
+            <span class="resumen-etiqueta">Tokens Encontrados</span>
+          </div>
+          <div class="resumen-item resumen-errores">
+            <span class="resumen-numero">{{ errores.length }}</span>
+            <span class="resumen-etiqueta">Errores Léxicos</span>
+          </div>
+          <div class="resumen-item resumen-lineas">
+            <span class="resumen-numero">{{ totalLineas }}</span>
+            <span class="resumen-etiqueta">Líneas Analizadas</span>
+          </div>
+        </div>
+        <!-- Muestra si el análisis fue exitoso o tuvo errores -->
+        <div *ngIf="errores.length === 0" class="estado-ok">
+          ✅ Análisis completado sin errores léxicos.
+        </div>
+        <div *ngIf="errores.length > 0" class="estado-error">
+          ⚠️ Se encontraron errores léxicos. El análisis se detuvo al encontrar el primer error.
+        </div>
+      </section>
+
+      <!-- Sección de errores léxicos (solo aparece si hay errores) -->
+      <section *ngIf="errores.length > 0" class="card seccion-errores">
+        <div class="card-titulo">
+          <span>❌</span>
+          <h2>Errores Léxicos</h2>
+        </div>
+        <div *ngFor="let error of errores" class="error-item">
+          <div class="error-ubicacion">
+            Línea {{ error.linea }}, Columna {{ error.columna }}
+          </div>
+          <div class="error-caracter">
+            Carácter inválido: <code>{{ error.caracter }}</code>
+          </div>
+          <div class="error-mensaje">{{ error.mensaje }}</div>
+        </div>
+      </section>
+
+      <!-- Esta parte llena la tabla que se muestra en pantalla con todos los tokens -->
+      <section *ngIf="tokens.length > 0" class="card seccion-tabla">
+        <div class="card-titulo">
+          <span>📋</span>
+          <h2>Tabla de Tokens</h2>
+          <span class="contador-tabla">{{ tokens.length }} tokens</span>
+        </div>
+
+        <div class="tabla-contenedor">
+          <table class="tabla-tokens" id="tabla-resultados">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Línea</th>
+                <th>Lexema</th>
+                <th>Tipo de Token</th>
+                <th>Descripción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let token of tokens; let i = index" class="fila-token">
+                <td class="col-numero">{{ i + 1 }}</td>
+                <td class="col-linea">{{ token.linea }}</td>
+                <td class="col-lexema"><code>{{ token.lexema }}</code></td>
+                <td class="col-tipo">
+                  <span class="badge" [ngClass]="getClaseTipo(token.tipo)">
+                    {{ token.tipo }}
+                  </span>
+                </td>
+                <td class="col-descripcion">{{ token.descripcion }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Si no hay tokens y no hay errores (código vacío de contenido) -->
+      <div *ngIf="tokens.length === 0 && errores.length === 0" class="sin-tokens">
+        No se encontraron tokens. El código puede estar vacío o ser solo comentarios/espacios.
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="pie-pagina">
+    <p>Proyecto de Compiladores — Analizador Léxico</p>
+  </footer>
+</div>
