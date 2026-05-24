@@ -144,19 +144,23 @@ export class LexicalAnalyzerService {
       // Checo si es una cadena sin cerrar (error léxico)
       if (codigo[i] === '"') {
         // Busco hasta el final de la línea para dar el error
+        let startIdx = i;
         let j = i + 1;
         while (j < codigo.length && codigo[j] !== '\n' && codigo[j] !== '"') {
           j++;
         }
-        const cadenaIncompleta = codigo.substring(i, j + 1);
+        const cadenaIncompleta = codigo.substring(startIdx, j + 1);
         errores.push({
           linea,
           columna: colInicio,
           caracter: cadenaIncompleta,
           mensaje: `Cadena de texto no cerrada correctamente en línea ${linea}, columna ${colInicio}`
         });
-        // Si encuentro un error en una cadena, me detengo en ese punto
-        break;
+        // Avanzamos más allá de la cadena problemática y continuamos
+        const consumed = (j - startIdx) + 1;
+        i = j + 1;
+        columna = colInicio + consumed;
+        continue;
       }
 
       // Checo si es una palabra reservada o identificador
@@ -301,8 +305,10 @@ export class LexicalAnalyzerService {
         mensaje: `Carácter inválido '${c}' en línea ${linea}, columna ${colInicio}. No pertenece al lenguaje.`
       });
 
-      // Cuando hay un error léxico, me detengo
-      break;
+      // Cuando hay un error léxico, continúo analizando el resto
+      i++;
+      columna++;
+      continue;
     }
 
     return {
