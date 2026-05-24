@@ -1,13 +1,53 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="h-full">
 <head>
   <meta charset="utf-8">
   <title>Analizador Léxico — Compiladores</title>
   <meta name="description" content="Aplicación web de análisis léxico para la materia de Compiladores. Analiza código fuente y genera una tabla de tokens.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Boxicons CDN -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+  <!-- Google Fonts - Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'matrix-bg': '#020204',
+            'matrix-dark': '#204829',
+            'matrix-primary': '#22b455',
+            'matrix-light': '#80ce87',
+            'matrix-glow': '#92e5a1',
+            // Agregamos también colores complementarios de Catppuccin Mocha para mejorar la estética del IDE
+            'ide-surface': '#11111b',
+            'ide-panel': '#181825',
+            'ide-overlay': '#313244',
+            'ide-text-dim': '#a6adc8',
+          },
+          fontFamily: {
+            mono: ['"Fira Code"', 'Consolas', 'Monaco', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Asegurar que la tipografía mono se aplique por defecto */
+    body {
+      font-family: 'Fira Code', monospace;
+    }
+  </style>
 </head>
-<body>
+<body class="h-full bg-matrix-bg text-gray-200">
   <app-root></app-root>
 </body>
 </html>
