@@ -1,104 +1,72 @@
-<!-- Contenedor Principal: Entorno de Desarrollo (IDE) del Analizador Léxico -->
+<!-- Contenedor Principal -->
 <div class="min-h-screen bg-matrix-bg flex flex-col font-mono text-gray-300 select-none">
 
   <!-- Header -->
   <header
     class="bg-black/90 border-b border-matrix-dark/40 px-4 py-3 flex items-center justify-between sticky top-0 z-50 backdrop-blur-md">
-
     <div class="flex items-center space-x-4">
       <div class="flex space-x-1.5">
         <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block opacity-85"></span>
         <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block opacity-85"></span>
         <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block opacity-85"></span>
       </div>
-
       <div class="h-4 w-px bg-matrix-dark/30"></div>
-
-      <div class="flex items-center space-x-2">
-        <span class="text-matrix-primary font-bold text-xs tracking-widest uppercase flex items-center">
-          <i class='bx bx-terminal mr-2 text-base'></i>
-          Teoria de la Computación | Analizador Léxico
-        </span>
-      </div>
+      <span class="text-matrix-primary font-bold text-xs tracking-widest uppercase flex items-center">
+        <i class='bx bx-terminal mr-2 text-base'></i>
+        Teoria de la Computación | Analizador Léxico
+      </span>
     </div>
 
-    <!-- Ruta -->
     <div
       class="hidden md:flex items-center space-x-2 bg-ide-surface/80 border border-matrix-dark/30 px-3 py-1 rounded text-[11px] text-matrix-light">
-
       <i class='bx bx-folder-open text-matrix-primary'></i>
-
-      <span class="opacity-80">root</span>
-      <span class="text-matrix-dark">/</span>
-
-      <span class="opacity-80">src</span>
-      <span class="text-matrix-dark">/</span>
-
-      <span class="opacity-80">TeoriaComputacion</span>
-      <span class="text-matrix-dark">/</span>
-
-      <span class="text-matrix-glow font-medium">
-        proyectofinal.code
-      </span>
+      <span class="opacity-80">root</span><span class="text-matrix-dark">/</span>
+      <span class="opacity-80">src</span><span class="text-matrix-dark">/</span>
+      <span class="opacity-80">TeoriaComputacion</span><span class="text-matrix-dark">/</span>
+      <span class="text-matrix-glow font-medium">proyectofinal.code</span>
     </div>
 
-    <!-- Estado -->
     <div class="flex items-center space-x-2 text-xs">
       <span class="flex h-2.5 w-2.5 relative">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-matrix-primary opacity-75">
-        </span>
-
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-matrix-primary">
-        </span>
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-matrix-primary opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-matrix-primary"></span>
       </span>
-
-      <span class="text-matrix-primary text-[10px] uppercase font-bold tracking-wider hidden sm:inline">
-        Kernel: Ready
-      </span>
+      <span class="text-matrix-primary text-[10px] uppercase font-bold tracking-wider hidden sm:inline">Kernel:
+        Ready</span>
     </div>
   </header>
 
-  <!-- Main -->
+  <!-- MAIN -->
   <main class="flex-1 p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-[1600px] w-full mx-auto">
 
-    <!-- PANEL IZQUIERDO -->
+    <!-- PANEL IZQUIERDO — Editor -->
     <section
       class="col-span-1 lg:col-span-6 flex flex-col bg-ide-panel/95 border border-matrix-dark/30 rounded-lg overflow-hidden shadow-2xl shadow-black/90">
 
       <!-- Tabs -->
       <div class="bg-ide-surface px-4 py-2.5 border-b border-matrix-dark/20 flex items-center justify-between">
-
         <div class="flex items-center space-x-1">
           <div
             class="flex items-center space-x-2 bg-[#020204]/75 px-3 py-1.5 rounded-t-md border-t border-x border-matrix-dark/40 text-[11px] text-matrix-glow font-bold">
-
             <i class='bx bx-code-alt text-matrix-primary text-sm'></i>
-
             <span>proyectofinal.code</span>
-
             <i class='bx bx-x text-xs text-matrix-dark hover:text-red-400 cursor-pointer ml-1'></i>
           </div>
         </div>
-
         <div class="flex space-x-2">
           <span
-            class="text-[9px] font-bold text-matrix-dark uppercase bg-matrix-primary/10 px-2 py-0.5 rounded tracking-wider">
-            UTF-8
-          </span>
-
+            class="text-[9px] font-bold text-matrix-dark uppercase bg-matrix-primary/10 px-2 py-0.5 rounded tracking-wider">UTF-8</span>
           <span
-            class="text-[9px] font-bold text-matrix-dark uppercase bg-matrix-primary/10 px-2 py-0.5 rounded tracking-wider">
-            Syntax: Auto
-          </span>
+            class="text-[9px] font-bold text-matrix-dark uppercase bg-matrix-primary/10 px-2 py-0.5 rounded tracking-wider">Syntax:
+            Auto</span>
         </div>
       </div>
 
-      <!-- Sub-Toolbar de Plantillas Rápidas -->
+      <!-- Plantillas Rápidas -->
       <div
         class="bg-ide-surface/50 border-b border-matrix-dark/15 px-4 py-2 flex flex-wrap items-center gap-2 text-xs select-none">
         <span class="text-matrix-light/60 uppercase text-[9px] font-bold tracking-wider mr-1 flex items-center">
-          <i class='bx bx-import text-sm mr-1'></i>
-          Plantillas:
+          <i class='bx bx-import text-sm mr-1'></i>Plantillas:
         </span>
         <button (click)="cargarEjemplo('factorial')"
           class="px-2.5 py-0.5 rounded bg-matrix-dark/15 border border-matrix-dark/40 hover:border-matrix-primary/40 text-[10px] text-matrix-light hover:text-white transition duration-150 active:scale-95">Factorial</button>
@@ -111,212 +79,364 @@
 
       <!-- Editor -->
       <div class="relative flex-grow flex bg-black/65 overflow-hidden h-[350px] lg:h-[480px]">
-        <!-- Line Numbers (Dinamicos y Sincronizados) -->
+        <!-- Números de línea -->
         <div id="line-numbers"
-          class="w-12 bg-ide-surface/20 border-r border-matrix-dark/10 py-4 select-none text-right pr-2 text-matrix-dark/40 text-[11px] font-mono overflow-y-hidden transition-all duration-150">
+          class="w-12 bg-ide-surface/20 border-r border-matrix-dark/10 py-4 select-none text-right pr-2 text-matrix-dark/40 text-[11px] font-mono overflow-y-hidden">
           <div *ngFor="let num of lineasDeCodigo" class="h-6 flex items-center justify-end">{{ num }}</div>
         </div>
 
         <!-- Textarea -->
         <textarea id="textarea-codigo"
           class="flex-grow w-full p-4 bg-transparent text-matrix-glow font-mono text-[13px] leading-6 focus:outline-none focus:ring-0 placeholder:text-matrix-dark/40 resize-none select-text overflow-y-auto"
-          [(ngModel)]="codigoFuente" (scroll)="onScrollTextarea($event)"
+          [(ngModel)]="codigoFuente" (scroll)="onScrollTextarea($event)" (click)="onCursorMove($event)"
+          (keyup)="onCursorMove($event)"
           [placeholder]="'// Escribe o carga tu código fuente aquí...\n// Ejemplo:\nint x = 10;\nfloat pi = 3.14;\nif (x > 5) {\n    return true;\n}'"
           spellcheck="false">
         </textarea>
       </div>
 
-      <!-- Toolbar -->
+      <!-- Contador de Caracteres y muestra de cursor -->
+      <div
+        class="bg-ide-surface/60 border-t border-matrix-dark/15 px-4 py-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[10px] text-matrix-light/55 select-none">
+        <span class="flex items-center gap-1.5">
+          <i class='bx bx-text text-matrix-primary text-xs'></i>
+          Caracteres: <strong class="text-matrix-light/80">{{ totalCaracteres }}</strong>
+        </span>
+        <span class="text-matrix-dark/40">|</span>
+        <span class="flex items-center gap-1.5">
+          <i class='bx bx-font text-matrix-primary text-xs'></i>
+          Palabras: <strong class="text-matrix-light/80">{{ totalPalabras }}</strong>
+        </span>
+        <span class="text-matrix-dark/40">|</span>
+        <span class="flex items-center gap-1.5">
+          <i class='bx bx-list-ol text-matrix-primary text-xs'></i>
+          Líneas: <strong class="text-matrix-light/80">{{ lineasDeCodigo.length }}</strong>
+        </span>
+        <span class="text-matrix-dark/40 hidden sm:inline">|</span>
+        <span class="hidden sm:flex items-center gap-1.5">
+          <i class='bx bx-crosshair text-matrix-primary text-xs'></i>
+          Cursor: <strong class="text-matrix-light/80">Ln {{ posicionCursor.linea }}, Col {{ posicionCursor.columna
+            }}</strong>
+        </span>
+      </div>
+
+      <!-- Toolbar inferior -->
       <div
         class="bg-ide-surface p-3 border-t border-matrix-dark/20 flex flex-col sm:flex-row gap-3 items-center justify-between">
-
-        <!-- Upload -->
         <div>
           <label for="input-archivo"
-            class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded border border-matrix-dark bg-matrix-bg/50 hover:bg-matrix-dark/20 text-matrix-light hover:text-white transition-all text-xs font-semibold cursor-pointer shadow-sm hover:border-matrix-primary/50">
-
+            class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded border border-matrix-dark bg-matrix-bg/50 hover:bg-matrix-dark/20 text-matrix-light hover:text-white transition-all text-xs font-semibold cursor-pointer hover:border-matrix-primary/50">
             <i class='bx bx-upload text-sm'></i>
             <span>Cargar Archivo</span>
           </label>
-
           <input id="input-archivo" type="file" accept=".txt,.c,.java,.js,.ts" class="hidden"
             (change)="cargarArchivo($event)">
         </div>
 
-        <!-- Buttons -->
         <div class="flex items-center space-x-3 w-full sm:w-auto">
-
-          <button
-            class="flex-1 sm:flex-initial inline-flex items-center justify-center space-x-1 px-3 py-1.5 rounded border border-red-950 hover:border-red-500/50 bg-red-950/10 hover:bg-red-950/30 text-red-400 transition-all text-xs font-semibold"
-            (click)="limpiar()">
-
-            <i class='bx bx-trash text-sm'></i>
-            <span>Limpiar</span>
+          <button (click)="limpiar()"
+            class="flex-1 sm:flex-initial inline-flex items-center justify-center space-x-1 px-3 py-1.5 rounded border border-red-950 hover:border-red-500/50 bg-red-950/10 hover:bg-red-950/30 text-red-400 transition-all text-xs font-semibold">
+            <i class='bx bx-trash text-sm'></i><span>Limpiar</span>
           </button>
 
-          <button
-            class="flex-1 sm:flex-initial inline-flex items-center justify-center space-x-1.5 px-5 py-1.5 rounded bg-matrix-primary hover:bg-matrix-primary/95 text-matrix-bg font-bold transition-all text-xs tracking-wider shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
-            (click)="analizar()" [disabled]="!codigoFuente.trim() || analizando">
-
+          <button (click)="analizar()" [disabled]="!codigoFuente.trim() || analizando"
+            class="flex-1 sm:flex-initial inline-flex items-center justify-center space-x-1.5 px-5 py-1.5 rounded bg-matrix-primary hover:bg-matrix-primary/95 text-matrix-bg font-bold transition-all text-xs tracking-wider shadow-lg disabled:opacity-40 disabled:cursor-not-allowed">
             <span *ngIf="!analizando" class="inline-flex items-center space-x-1.5">
-              <i class='bx bx-play-circle text-base'></i>
-              <span>ANALIZAR</span>
+              <i class='bx bx-play-circle text-base'></i><span>ANALIZAR</span>
             </span>
-
             <span *ngIf="analizando" class="inline-flex items-center space-x-1.5">
-              <i class='bx bx-loader-alt animate-spin text-base'></i>
-              <span>PROCESANDO...</span>
+              <i class='bx bx-loader-alt animate-spin text-base'></i><span>PROCESANDO...</span>
             </span>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- PANEL DERECHO -->
+    <!--  PANEL DERECHO — Resultados  -->
     <section class="col-span-1 lg:col-span-6 flex flex-col space-y-6">
 
-      <!-- Welcome -->
+      <!-- Estado inicial de panel derecho -->
       <div *ngIf="!analisisRealizado"
         class="flex-1 bg-ide-panel/90 border border-matrix-dark/30 rounded-lg p-6 flex flex-col justify-center items-center text-center shadow-2xl shadow-black/80 min-h-[300px]">
-
         <div
           class="w-16 h-16 rounded-full bg-matrix-dark/10 border border-matrix-primary/20 text-matrix-primary mb-4 flex items-center justify-center animate-pulse">
           <i class='bx bx-terminal text-4xl'></i>
         </div>
-
-        <h3 class="text-matrix-glow font-bold text-base tracking-widest uppercase mb-2">
-          Analizador Léxico
-        </h3>
-
-        <p class="text-xs text-matrix-light max-w-sm leading-relaxed mb-6">
-          Ingresa el código fuente y presiona
-          <strong class="text-matrix-primary">[ANALIZAR]</strong>
+        <h3 class="text-matrix-glow font-bold text-base tracking-widest uppercase mb-2">Analizador Léxico</h3>
+        <p class="text-xs text-matrix-light max-w-sm leading-relaxed">
+          Ingresa el código fuente y presiona <strong class="text-matrix-primary">[ANALIZAR]</strong>
         </p>
       </div>
 
-      <!-- Results -->
+      <!--  RESULTADOS  -->
       <div *ngIf="analisisRealizado" class="flex flex-col space-y-5">
 
         <!-- Stats -->
         <section class="grid grid-cols-3 gap-3">
-
           <div class="bg-ide-panel border border-matrix-dark/25 rounded-lg p-3 text-center">
-
             <i class='bx bx-barcode-reader text-matrix-primary text-xl mb-1'></i>
-
-            <span class="text-2xl font-black text-matrix-primary tracking-tight">
-              {{ tokens.length }}
-            </span>
-
-            <span class="text-[9px] uppercase tracking-wider text-matrix-light font-bold">
-              Tokens
-            </span>
+            <div class="text-2xl font-black text-matrix-primary tracking-tight">{{ tokens.length }}</div>
+            <div class="text-[9px] uppercase tracking-wider text-matrix-light font-bold">Tokens</div>
           </div>
-
           <div class="bg-ide-panel border rounded-lg p-3 text-center"
             [ngClass]="errores.length > 0 ? 'border-red-500/30 bg-red-950/5' : 'border-matrix-dark/25'">
-
-            <i class='bx bx-bug text-xl mb-1' [ngClass]="errores.length > 0 ? 'text-red-500' : 'text-matrix-primary'">
-            </i>
-
-            <span class="text-2xl font-black tracking-tight"
-              [ngClass]="errores.length > 0 ? 'text-red-500' : 'text-matrix-primary'">
-
-              {{ errores.length }}
-            </span>
-
-            <span class="text-[9px] uppercase tracking-wider text-matrix-light font-bold">
-              Errores
-            </span>
+            <i class='bx bx-bug text-xl mb-1'
+              [ngClass]="errores.length > 0 ? 'text-red-500' : 'text-matrix-primary'"></i>
+            <div class="text-2xl font-black tracking-tight"
+              [ngClass]="errores.length > 0 ? 'text-red-500' : 'text-matrix-primary'">{{ errores.length }}</div>
+            <div class="text-[9px] uppercase tracking-wider text-matrix-light font-bold">Errores</div>
           </div>
-
           <div class="bg-ide-panel border border-matrix-dark/25 rounded-lg p-3 text-center">
-
             <i class='bx bx-list-ol text-matrix-glow text-xl mb-1'></i>
-
-            <span class="text-2xl font-black text-matrix-glow tracking-tight">
-              {{ totalLineas }}
-            </span>
-
-            <span class="text-[9px] uppercase tracking-wider text-matrix-light font-bold">
-              Líneas
-            </span>
+            <div class="text-2xl font-black text-matrix-glow tracking-tight">{{ totalLineas }}</div>
+            <div class="text-[9px] uppercase tracking-wider text-matrix-light font-bold">Líneas</div>
           </div>
         </section>
 
-        <!-- Error List -->
-        <section *ngIf="errores.length > 0"
-          class="bg-red-950/5 border border-red-500/25 rounded-lg overflow-hidden shadow-lg">
+        <!--  Botones de acción post-análisis  -->
+        <div class="flex flex-wrap gap-2">
 
-          <div
-            class="bg-red-950/20 px-4 py-2 border-b border-red-500/20 flex items-center text-red-400 text-xs font-bold tracking-wider uppercase">
+          <!-- Exportar JSON -->
+          <button (click)="exportarJSON()"
+            class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded border border-matrix-primary/40 bg-matrix-primary/10 hover:bg-matrix-primary/20 text-matrix-primary text-[10px] font-bold tracking-wider uppercase transition-all active:scale-95">
+            <i class='bx bx-download text-sm'></i>
+            <span>Exportar JSON</span>
+          </button>
 
-            <i class='bx bx-error-alt mr-2 text-sm'></i>
+          <!-- Toggle modo comparación -->
+          <button (click)="toggleComparacion()"
+            class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded border text-[10px] font-bold tracking-wider uppercase transition-all active:scale-95"
+            [ngClass]="modoComparacion
+              ? 'border-yellow-500/50 bg-yellow-500/10 text-yellow-400'
+              : 'border-blue-500/40 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400'">
+            <i class='bx text-sm' [ngClass]="modoComparacion ? 'bx-x' : 'bx-git-compare'"></i>
+            <span>{{ modoComparacion ? 'Cerrar Comparación' : 'Modo Comparación' }}</span>
+          </button>
+        </div>
 
-            <span>Diagnóstico de Errores Léxicos</span>
+        <!--  Modo Comparación  -->
+        <section *ngIf="modoComparacion"
+          class="bg-ide-panel/90 border border-blue-500/25 rounded-lg overflow-hidden shadow-xl">
+          <div class="bg-blue-950/20 px-4 py-2.5 border-b border-blue-500/20 flex items-center justify-between">
+            <div class="flex items-center space-x-2 text-blue-400 text-xs font-bold tracking-wider uppercase">
+              <i class='bx bx-git-compare text-sm'></i>
+              <span>Código Original ↔ Tokens</span>
+            </div>
+            <span
+              class="text-[9px] text-blue-400/70 bg-blue-500/10 px-2 py-0.5 rounded uppercase tracking-wider font-bold">DIFF
+              VIEW</span>
+          </div>
+          <div class="overflow-x-auto max-h-[280px] overflow-y-auto">
+            <table class="w-full text-left border-collapse select-text text-[11px] font-mono">
+              <thead>
+                <tr
+                  class="border-b border-blue-500/15 bg-black/40 text-blue-300/60 text-[9px] font-bold tracking-widest uppercase sticky top-0 z-10">
+                  <th class="p-2 w-10 text-center">#</th>
+                  <th class="p-2">Código Original</th>
+                  <th class="p-2 border-l border-blue-500/20">Tokens Detectados</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-blue-500/10">
+                <tr *ngFor="let fila of lineasComparacion" class="hover:bg-blue-500/5 transition-colors duration-100"
+                  [ngClass]="{ 'opacity-40': !fila.tieneToken }">
+                  <td class="p-2 text-center text-matrix-dark/50 font-semibold bg-black/10 w-10">{{ fila.linea }}</td>
+                  <td class="p-2 text-gray-300 whitespace-pre">{{ fila.original || '​' }}</td>
+                  <td class="p-2 border-l border-blue-500/15 text-blue-300/80 whitespace-pre-wrap leading-relaxed">
+                    <span *ngIf="fila.tieneToken">{{ fila.anotada }}</span>
+                    <span *ngIf="!fila.tieneToken" class="text-matrix-dark/30 italic text-[9px]">— sin tokens —</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!--  Distribución de Tokens  -->
+        <section *ngIf="distribucionTokens.length > 0"
+          class="bg-ide-panel/90 border border-matrix-dark/25 rounded-lg overflow-hidden shadow-xl">
+
+          <!-- Header -->
+          <div class="bg-ide-surface px-4 py-2.5 border-b border-matrix-dark/20 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <i class='bx bx-pie-chart-alt-2 text-matrix-primary text-sm'></i>
+              <span class="text-xs text-matrix-glow font-bold tracking-wider uppercase">Distribución de Tokens</span>
+            </div>
+            <span class="text-[9px] text-matrix-dark/60 bg-matrix-dark/10 px-2 py-0.5 rounded font-bold">
+              {{ distribucionTokens.length }} tipos
+            </span>
           </div>
 
-          <div class="p-3 flex flex-col gap-2 max-h-[220px] overflow-y-auto">
+          <div class="p-4 flex flex-col sm:flex-row items-center gap-6">
 
+            <!-- SVG Donut Chart -->
+            <div class="relative flex-shrink-0 w-[300px] h-[300px]">
+              <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+
+                <!-- Secciones de la grafica -->
+                <g *ngFor="let slice of pieSlices; let i = index" class="cursor-pointer" [style.transform]="hoveredSliceIndex === i
+            ? 'translate(' + slice.tx + 'px, ' + slice.ty + 'px)'
+            : 'translate(0, 0)'" style="transition: transform 0.2s ease; transform-origin: 150px 150px;"
+                  (mouseenter)="setHoveredSlice(i)" (mouseleave)="clearHoveredSlice()">
+
+                  <path [attr.d]="slice.path" [style.fill]="slice.color"
+                    [style.opacity]="hoveredSliceIndex === null || hoveredSliceIndex === i ? 0.85 : 0.25"
+                    style="transition: opacity 0.2s ease; stroke: rgba(0,0,0,0.3); stroke-width: 1.5;"></path>
+                </g>
+
+                <!-- Centro dew grafica -->
+                <g *ngIf="hoveredSliceIndex === null">
+                  <text x="150" y="143" text-anchor="middle"
+                    style="fill: rgba(255,255,255,0.5); font-size: 11px; font-family: monospace; font-weight: bold; letter-spacing: 2px;">
+                    TOTAL
+                  </text>
+                  <text x="150" y="165" text-anchor="middle"
+                    style="fill: #00ff88; font-size: 22px; font-family: monospace; font-weight: 900;">
+                    {{ tokens.length }}
+                  </text>
+                  <text x="150" y="180" text-anchor="middle"
+                    style="fill: rgba(255,255,255,0.3); font-size: 9px; font-family: monospace; letter-spacing: 1px;">
+                    TOKENS
+                  </text>
+                </g>
+
+                <!-- Centro con hover -->
+                <g *ngIf="hoveredSliceIndex !== null">
+                  <!-- Tipo (puede ser largo, truncamos con tspan) -->
+                  <text x="150" y="136" text-anchor="middle"
+                    style="font-size: 9px; font-family: monospace; font-weight: bold; letter-spacing: 1px;"
+                    [style.fill]="pieSlices[hoveredSliceIndex].color">
+                    {{ pieSlices[hoveredSliceIndex].tipo.length > 14
+                    ? pieSlices[hoveredSliceIndex].tipo.slice(0, 13) + '…'
+                    : pieSlices[hoveredSliceIndex].tipo }}
+                  </text>
+                  <!-- Cantidad -->
+                  <text x="150" y="164" text-anchor="middle"
+                    style="font-size: 26px; font-family: monospace; font-weight: 900;"
+                    [style.fill]="pieSlices[hoveredSliceIndex].color">
+                    {{ pieSlices[hoveredSliceIndex].cantidad }}
+                  </text>
+                  <!-- Porcentaje -->
+                  <text x="150" y="181" text-anchor="middle"
+                    style="fill: rgba(255,255,255,0.45); font-size: 11px; font-family: monospace; font-weight: bold;">
+                    {{ pieSlices[hoveredSliceIndex].porcentaje }}%
+                  </text>
+                </g>
+
+              </svg>
+            </div>
+
+            <!-- Leyenda -->
+            <div class="flex flex-col gap-2 flex-1 min-w-0 w-full sm:w-auto">
+              <div *ngFor="let dist of distribucionTokens; let i = index"
+                class="flex items-center gap-2.5 px-2 py-1.5 rounded cursor-pointer transition-all duration-150"
+                [style.background-color]="hoveredSliceIndex === i ? 'rgba(255,255,255,0.04)' : 'transparent'"
+                (mouseenter)="setHoveredSlice(i)" (mouseleave)="clearHoveredSlice()">
+
+                <!-- Pastilla de color -->
+                <span class="w-2.5 h-2.5 rounded-sm flex-shrink-0 transition-all duration-150"
+                  [style.background-color]="dist.color"
+                  [style.opacity]="hoveredSliceIndex === null || hoveredSliceIndex === i ? 1 : 0.3">
+                </span>
+
+                <!-- Nombre del tipo -->
+                <span class="text-[10px] font-bold uppercase tracking-wider truncate flex-1 transition-all duration-150"
+                  [style.color]="dist.color"
+                  [style.opacity]="hoveredSliceIndex === null || hoveredSliceIndex === i ? 1 : 0.3">
+                  {{ dist.tipo }}
+                </span>
+
+                <!-- Cantidad y % -->
+                <div class="flex items-center gap-1.5 flex-shrink-0">
+                  <span class="text-[11px] font-black transition-all duration-150" [style.color]="dist.color"
+                    [style.opacity]="hoveredSliceIndex === null || hoveredSliceIndex === i ? 1 : 0.3">
+                    {{ dist.cantidad }}
+                  </span>
+                  <span class="text-[9px] text-matrix-dark/50 font-medium">
+                    {{ dist.porcentaje }}%
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+        <!-- Errores léxicos -->
+        <section *ngIf="errores.length > 0"
+          class="bg-red-950/5 border border-red-500/25 rounded-lg overflow-hidden shadow-lg">
+          <div
+            class="bg-red-950/20 px-4 py-2 border-b border-red-500/20 flex items-center text-red-400 text-xs font-bold tracking-wider uppercase">
+            <i class='bx bx-error-alt mr-2 text-sm'></i>
+            <span>Diagnóstico de Errores Léxicos</span>
+          </div>
+          <div class="p-3 flex flex-col gap-2 max-h-[220px] overflow-y-auto">
             <div *ngFor="let error of errores"
               class="bg-black/50 border-l-4 border-red-500 p-3 rounded-r text-xs space-y-1">
-
               <div class="font-bold text-red-400 text-[10px] tracking-widest flex items-center justify-between">
-
-                <span>
-                  [ERROR_POS: LÍNEA {{ error.linea }}, COLUMNA {{ error.columna }}]
-                </span>
-
-                <span class="bg-red-500/10 text-red-400 px-1 py-0.5 rounded text-[8px]">
-                  FATAL
-                </span>
+                <span>[ERROR_POS: LÍNEA {{ error.linea }}, COLUMNA {{ error.columna }}]</span>
+                <span class="bg-red-500/10 text-red-400 px-1 py-0.5 rounded text-[8px]">FATAL</span>
               </div>
-
               <div class="text-gray-200">
                 Carácter inesperado:
-
-                <code class="px-1.5 py-0.5 font-bold text-red-300 rounded bg-red-500/15 border border-red-500/25">
-
-                  '{{ error.caracter }}'
-                </code>
+                <code
+                  class="px-1.5 py-0.5 font-bold text-red-300 rounded bg-red-500/15 border border-red-500/25">'{{ error.caracter }}'</code>
               </div>
-
-              <p class="text-[10.5px] italic text-matrix-light/65 leading-relaxed">
-                {{ error.mensaje }}
-              </p>
+              <p class="text-[10.5px] italic text-matrix-light/65 leading-relaxed">{{ error.mensaje }}</p>
             </div>
           </div>
         </section>
 
-        <!-- Tokens -->
+        <!--Tabla de Tokens con Filtro  -->
         <section *ngIf="tokens.length > 0"
           class="bg-ide-panel/90 border border-matrix-dark/25 rounded-lg overflow-hidden shadow-xl">
 
           <div class="bg-ide-surface px-4 py-2.5 border-b border-matrix-dark/20 flex items-center justify-between">
-
             <div class="flex items-center space-x-2">
               <i class='bx bx-table text-matrix-primary text-sm'></i>
-
-              <span class="text-xs text-matrix-glow font-bold tracking-wider uppercase">
-                Tabla de Tokens
-              </span>
+              <span class="text-xs text-matrix-glow font-bold tracking-wider uppercase">Tabla de Tokens</span>
             </div>
-
             <span
               class="bg-matrix-dark/20 border border-matrix-primary/20 text-matrix-primary text-[9px] px-2 py-0.5 rounded-full font-bold">
-
-              {{ tokens.length }} registros
+              {{ tokensFiltrados.length }} / {{ tokens.length }} registros
             </span>
           </div>
 
+          <!-- Barra de Filtros  -->
+          <div class="bg-black/30 border-b border-matrix-dark/15 px-4 py-2.5 flex flex-wrap gap-2 items-center">
+
+            <!-- Input búsqueda -->
+            <div
+              class="flex items-center bg-black/50 border border-matrix-dark/30 rounded px-2 py-1 gap-2 flex-1 min-w-[140px]">
+              <i class='bx bx-search text-matrix-dark/60 text-sm'></i>
+              <input type="text" [(ngModel)]="filtroTexto" (ngModelChange)="aplicarFiltro()"
+                placeholder="Buscar lexema o tipo..."
+                class="bg-transparent text-[11px] text-matrix-light placeholder:text-matrix-dark/40 focus:outline-none w-full font-mono" />
+            </div>
+
+            <!-- Select tipo -->
+            <select [(ngModel)]="filtroTipo" (ngModelChange)="aplicarFiltro()"
+              class="bg-black/50 border border-matrix-dark/30 rounded px-2 py-1 text-[10px] text-matrix-light font-mono focus:outline-none focus:border-matrix-primary/50 cursor-pointer">
+              <option *ngFor="let tipo of tiposDisponibles" [value]="tipo">{{ tipo }}</option>
+            </select>
+
+            <!-- Reset -->
+            <button *ngIf="filtroTexto || filtroTipo !== 'TODOS'" (click)="resetFiltro()"
+              class="text-[9px] text-red-400 border border-red-900/40 bg-red-950/10 hover:bg-red-950/30 px-2 py-1 rounded transition-all uppercase font-bold tracking-wider">
+              <i class='bx bx-x text-xs'></i> Reset
+            </button>
+
+            <!-- Sin coincidencias -->
+            <span *ngIf="tokensFiltrados.length === 0 && tokens.length > 0"
+              class="text-[9px] text-red-400/80 italic">Sin coincidencias</span>
+          </div>
+
+          <!-- Tabla -->
           <div class="overflow-x-auto max-h-[300px] overflow-y-auto">
-
             <table class="w-full text-left border-collapse select-text">
-
               <thead>
                 <tr
                   class="border-b border-matrix-dark/20 bg-black/40 text-matrix-light text-[9px] font-bold tracking-widest uppercase sticky top-0 z-10">
-
                   <th class="p-2.5 w-10 text-center">#</th>
                   <th class="p-2.5 w-12 text-center">Línea</th>
                   <th class="p-2.5">Lexema</th>
@@ -324,41 +444,21 @@
                   <th class="hidden p-2.5 sm:table-cell">Descripción</th>
                 </tr>
               </thead>
-
               <tbody class="divide-y divide-matrix-dark/10 text-[11px] font-mono">
-
-                <tr *ngFor="let token of tokens; let i = index"
+                <tr *ngFor="let token of tokensFiltrados; let i = index"
                   class="border-b border-matrix-dark/10 hover:bg-matrix-dark/5 transition-colors duration-100">
-
-                  <td class="p-2.5 text-center text-matrix-dark font-semibold bg-black/10">
-                    {{ i + 1 }}
-                  </td>
-
-                  <td class="p-2.5 text-center text-matrix-light font-bold">
-                    {{ token.linea }}
-                  </td>
-
+                  <td class="p-2.5 text-center text-matrix-dark font-semibold bg-black/10">{{ i + 1 }}</td>
+                  <td class="p-2.5 text-center text-matrix-light font-bold">{{ token.linea }}</td>
                   <td class="p-2.5">
                     <code
-                      class="px-1.5 py-0.5 font-bold text-white rounded border bg-matrix-dark/5 border-matrix-dark/15">
-
-                      {{ token.lexema }}
-                    </code>
+                      class="px-1.5 py-0.5 font-bold text-white rounded border bg-matrix-dark/5 border-matrix-dark/15">{{ token.lexema }}</code>
                   </td>
-
                   <td class="p-2.5">
-
                     <span
                       class="px-2 py-0.5 text-[9px] font-bold rounded border uppercase tracking-wider block text-center truncate max-w-[170px]"
-                      [ngClass]="getClaseTipo(token.tipo)">
-
-                      {{ token.tipo }}
-                    </span>
+                      [ngClass]="getClaseTipo(token.tipo)">{{ token.tipo }}</span>
                   </td>
-
-                  <td class="hidden p-2.5 text-gray-400 italic sm:table-cell text-[10px]">
-                    {{ token.descripcion }}
-                  </td>
+                  <td class="hidden p-2.5 text-gray-400 italic sm:table-cell text-[10px]">{{ token.descripcion }}</td>
                 </tr>
               </tbody>
             </table>
@@ -367,27 +467,25 @@
 
       </div>
 
-      <!-- Consola de Logs / Historial del Compilador (Retro Terminal) -->
+      <!-- Terminal Logs -->
       <section
         class="bg-black/85 border border-matrix-dark/35 rounded-lg overflow-hidden shadow-lg flex flex-col h-[180px] mt-auto">
         <div class="bg-ide-surface px-4 py-2 border-b border-matrix-dark/20 flex items-center justify-between">
           <span class="text-[10px] text-matrix-glow font-bold tracking-widest uppercase flex items-center">
-            <i class='bx bx-terminal mr-1.5 text-xs text-matrix-primary'></i>
-            Terminal Logs
+            <i class='bx bx-terminal mr-1.5 text-xs text-matrix-primary'></i>Terminal Logs
           </span>
           <span
             class="text-[8px] bg-matrix-primary/10 text-matrix-light px-1.5 py-0.5 rounded uppercase tracking-wider font-semibold">Active
             Session</span>
         </div>
-        <div
-          class="p-3 flex-1 overflow-y-auto font-mono text-[10px] text-matrix-light/80 space-y-1 select-text scrollbar-thin scrollbar-thumb-matrix-dark">
+        <div class="p-3 flex-1 overflow-y-auto font-mono text-[10px] text-matrix-light/80 space-y-1 select-text">
           <div *ngFor="let log of logs" class="leading-relaxed">
             <span class="text-matrix-dark mr-1.5">&gt;</span>
             <span [ngClass]="{
-              'text-red-400': log.includes('[ERROR]'), 
-              'text-matrix-primary font-bold': log.includes('[SUCCESS]'),
-              'text-matrix-glow font-bold': log.includes('[SCAN]'),
-              'text-matrix-light/50 font-medium': log.includes('[SYSTEM]')
+              'text-red-400':                    log.includes('[ERROR]'),
+              'text-matrix-primary font-bold':   log.includes('[SUCCESS]'),
+              'text-matrix-glow font-bold':      log.includes('[SCAN]'),
+              'text-matrix-light/50 font-medium':log.includes('[SYSTEM]')
             }">{{ log }}</span>
           </div>
         </div>
@@ -396,28 +494,20 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!--  FOOTER  -->
   <footer
     class="bg-black/95 border-t border-matrix-dark/30 px-4 py-2 flex items-center justify-between text-[10px] text-matrix-light/60 select-none">
-
     <div class="flex items-center space-x-1.5">
       <i class='bx bx-terminal text-xs text-matrix-primary animate-pulse'></i>
-
       <span>System: [Active]</span>
-
       <span class="text-matrix-dark font-bold">|</span>
-
       <span>UTF-8</span>
     </div>
-
     <div>
       <span>Teoria de la computacion © {{ currentYear }}</span>
-
       <span class="text-matrix-dark font-bold mx-1.5">|</span>
-
-      <span class="text-matrix-glow font-bold">
-        FS UAdeC
-      </span>
+      <span class="text-matrix-glow font-bold">FS UAdeC</span>
     </div>
   </footer>
+
 </div>
