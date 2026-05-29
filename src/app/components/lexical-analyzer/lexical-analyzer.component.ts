@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { LexicalAnalyzerService } from '../../services/lexical-analyzer.service';
 import { Token, ErrorLexico, ResultadoAnalisis } from '../../models/token.model';
 
-//  Interfaz local para distribución (no requiere cambio en models) 
+// Se define una interfaz local para la distribución de los tipos de tokens 
+// No requiere cambio en models 
 interface DistribucionTipo {
   tipo: string;
   cantidad: number;
@@ -173,13 +174,7 @@ export class LexicalAnalyzerComponent {
   setHoveredSlice(i: number): void { this.hoveredSliceIndex = i; }
   clearHoveredSlice(): void { this.hoveredSliceIndex = null; }
 
-  //  [PIE CHART] Interfaz extendida para cada rebanada 
-  // (Puedes poner esta interface al inicio del archivo, fuera de la clase,
-  //  junto a DistribucionTipo)
-
-
-
-  //  [PIE CHART] Getter principal 
+  //Getter principal 
   get pieSlices(): Array<DistribucionTipo & {
     path: string;
     midAngle: number;

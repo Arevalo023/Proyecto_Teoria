@@ -6,14 +6,14 @@ import { Token, ErrorLexico, ResultadoAnalisis } from '../models/token.model';
 })
 export class LexicalAnalyzerService {
 
-  // Aquí guardo las palabras reservadas que va a reconocer el analizador
+  // aqui se guarda las palabras reservadas que va a reconocer el analizador
   private palabrasReservadas: string[] = [
     'int', 'float', 'double', 'char', 'string', 'boolean',
     'if', 'else', 'while', 'for', 'do', 'return',
     'true', 'false', 'void', 'class', 'public', 'private', 'static'
   ];
 
-  // Este método es el que inicia el análisis cuando el usuario presiona "Analizar"
+  // Este método inicia el análisis cuando el usuario presiona "Analizar"
   analizar(codigo: string): ResultadoAnalisis {
     const tokens: Token[] = [];
     const errores: ErrorLexico[] = [];
@@ -23,11 +23,11 @@ export class LexicalAnalyzerService {
     let columna = 1;    // Número de columna actual
     let totalLineas = 1;
 
-    // Recorro el texto para ir separando los lexemas
+    // Recorre el texto para ir separando los lexemas
     while (i < codigo.length) {
       const colInicio = columna;
 
-      // Si encuentro un salto de línea, actualizo el contador de líneas
+      // Si se encuentra un salto de línea, se actualiza el contador de líneas
       if (codigo[i] === '\n') {
         linea++;
         columna = 1;
@@ -36,14 +36,14 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Si encuentro un espacio o tabulación, lo ignoro
+      // Si se encuentra un espacio o tabulación, se ignora
       if (codigo[i] === ' ' || codigo[i] === '\t' || codigo[i] === '\r') {
         columna++;
         i++;
         continue;
       }
 
-      // Verifico si es un comentario de una línea (//)
+      // Verifica si es un comentario de una línea (//)
       if (codigo[i] === '/' && codigo[i + 1] === '/') {
         while (i < codigo.length && codigo[i] !== '\n') {
           i++;
@@ -52,7 +52,7 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Verifico si es un comentario de bloque (/* */)
+      // Verifica si es un comentario de bloque (/* */)
       if (codigo[i] === '/' && codigo[i + 1] === '*') {
         i += 2;
         columna += 2;
@@ -73,11 +73,11 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Intento hacer match con cada tipo de token usando expresiones regulares
-      // Tomo el texto desde la posición actual hasta el final
+      // Se intenta hacer match con cada tipo de token usando expresiones regulares
+      // Se toma el texto desde la posición actual hasta el final
       const resto = codigo.substring(i);
 
-      // Primero checo los números en notación científica (antes que decimales y enteros)
+      // Primero se checan los números en notación científica (antes que decimales y enteros)
       const matchCientifico = resto.match(/^[0-9]+(\.[0-9]+)?[eE][0-9]+/);
       if (matchCientifico) {
         const lexema = matchCientifico[0];
@@ -93,7 +93,7 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Checo si es un número decimal (tiene punto)
+      // Checa si es un número decimal (tiene punto)
       const matchDecimal = resto.match(/^[0-9]+\.[0-9]+/);
       if (matchDecimal) {
         const lexema = matchDecimal[0];
@@ -109,7 +109,7 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Checo si es un número entero
+      // Checa si es un número entero
       const matchEntero = resto.match(/^[0-9]+/);
       if (matchEntero) {
         const lexema = matchEntero[0];
@@ -125,7 +125,7 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Checo si es una cadena de texto (entre comillas dobles)
+      // Checa si es una cadena de texto (entre comillas dobles)
       const matchCadena = resto.match(/^"[^"]*"/);
       if (matchCadena) {
         const lexema = matchCadena[0];
@@ -141,7 +141,7 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Checo si es una cadena sin cerrar (error léxico)
+      // Se checa si es una cadena sin cerrar (error léxico)
       if (codigo[i] === '"') {
         // Busco hasta el final de la línea para dar el error
         let startIdx = i;
@@ -156,19 +156,19 @@ export class LexicalAnalyzerService {
           caracter: cadenaIncompleta,
           mensaje: `Cadena de texto no cerrada correctamente en línea ${linea}, columna ${colInicio}`
         });
-        // Avanzamos más allá de la cadena problemática y continuamos
+        // Se avanza más allá de la cadena problemática y continuamos
         const consumed = (j - startIdx) + 1;
         i = j + 1;
         columna = colInicio + consumed;
         continue;
       }
 
-      // Checo si es una palabra reservada o identificador
+      // Se checa si es una palabra reservada o identificador
       // Los identificadores empiezan con letra o guion bajo
       const matchIdentificador = resto.match(/^[a-zA-Z_][a-zA-Z0-9_]*/);
       if (matchIdentificador) {
         const lexema = matchIdentificador[0];
-        // Verifico si es una palabra reservada
+        // Se verifica si es una palabra reservada
         if (this.palabrasReservadas.includes(lexema)) {
           tokens.push({
             linea,
@@ -191,7 +191,7 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Checo los operadores relacionales (primero los de dos caracteres)
+      // Se checan los operadores relacionales (primero los de dos caracteres)
       const operadoresRelacionales2 = ['>=', '<=', '==', '!='];
       const opRel2 = operadoresRelacionales2.find(op => resto.startsWith(op));
       if (opRel2) {
@@ -207,7 +207,7 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Checo los operadores lógicos de dos caracteres
+      // Se checan los operadores lógicos de dos caracteres
       const operadoresLogicos2 = ['&&', '||'];
       const opLog2 = operadoresLogicos2.find(op => resto.startsWith(op));
       if (opLog2) {
@@ -223,11 +223,11 @@ export class LexicalAnalyzerService {
         continue;
       }
 
-      // Checo el caracter actual para operadores y delimitadores de un solo caracter
+      // Se checa el caracter actual para operadores y delimitadores de un solo caracter
       const c = codigo[i];
 
       // Operadores aritméticos (el / ya fue cubierto por los comentarios,
-      // pero si llegamos aquí es porque NO era comentario)
+      // pero si se llega aquí es porque NO era comentario)
       if (['+', '-', '*', '/', '%'].includes(c)) {
         tokens.push({
           linea,
